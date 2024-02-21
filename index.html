@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Vis & Society Assignment 2</title>
+	<link rel="stylesheet" href="https://vis-society.github.io/assignments/report.css" />
+	<link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+	<header>
+		<h1>
+			<small>Assignment 2</small>
+			Exploratory Data Analysis
+		</h1>
+
+		<p>
+			<strong>David Burke</strong> — <em>Burkedm@mit.edu</em>
+		</p>
+	</header>
+	<main>
+		<section>
+			<h2>Subtheme: Making a Case for Upzoning</h2>
+
+			<h3>Dataset</h3>
+			<p>
+				The dataset used in this report contains demographic data for individuals and households for 101 municipalities in the Greater Boston Area. It includes data about each area including percentage of houses that are single family, whether it is an MBTA community, and geographic data for each municipality. Population and household data from the 2010 census includes population, gender, age ranges, racial makeup, number of family and non-family households, and number of families per each type of household. Data for income brackets by municipality is also included, aggregated from 2014-2018 census income data. 
+			</p>
+
+			<h3>Overall Analysis Questions</h3>
+			<ol>
+				<li>How much does population density vary between these zones and the surrounding areas?</li>
+				<li>How does percent of single family housing correlate to income levels?</li>
+				<li>How do the demographics vary between single family housing zones and other zones?</li>
+			</ol>
+		</section>
+
+		<section>
+			<h2>Discoveries & Insights</h2>
+			<p>
+				Prior to performaning any specific analysis, the data was inspected to determine its quality. Upon inspecting the populations for each municipality, it was clear there was some error in the data, as the values did not scale properly to values near the correct ones based on a search of 2010 census data. For example, Boston was given a population value of '1369' when the number was 617,594. Upon bringing up this discrepancy it was discovered that the census data had been mismatched with the zoning map, and the data was corrected. The updated values still differ slightly from the 2010 census data due to this data only including populations in housing zoning districts.
+			</p>
+			<figure>
+				<img src="./graphs/City Populations.png" alt="City Populations by Municipality" />
+				<figcaption>
+				Total population across all housing zones by municipality.
+				</figcaption>
+			</figure>
+
+			<p>
+				To ensure completeness of data, several comparisons were made to see that data by categories added up to the total values. This included checking all households by income group vs total households, population by racial demographic vs total populations, and household sizes against total households for both family and non-family households. This verification is very important for ensuring the validity of the analyses made below, many of which observe these subsets as percentages of the whole. 
+			</p>
+			<figure>
+				<img src="./graphs/Data Validations.png" alt="" />
+				<figcaption>
+				Data groupings summed together and divided by the total numbers given in the dataset all yielded 1.0, confirming completeness of data provided and all categories observed during analysis.
+				</figcaption>
+			</figure>
+
+			<p>
+				A major consideration to take when looking at the impact of housing zoning is the population density within those areas. While it may seem obvious that population density will be lower in areas with single family homes, visualizing the extent to which these areas contrast can be useful for demonstrating the impacts these areas are having in forcing populations to smaller areas. <br>
+				To observe the correlation between population density and amount of single-family zoning, we compare a map of the percentage of single family zoning to one of population densities by municipality. In doing so, it can be observed that population density is extremely high starting from a peak in Boston and dropping off proportionally with the increase in single-family zones, and that these zones effectively form a perimeter around the heavily populated regions. The areas outside of this perimeter have relatively low population densities. This raises the question of why these outer areas, if not zoned for single families, are so scarcely populated. Potential reasons could include fewer job opportunities far from the Boston area, lower earning potential, inability to commute to job centers, or there may be reasons outside of what can be determined from this data. One potential clue can be found looking at the household income data of the area in the next figure. 
+			</p>
+			<figure>
+				<img src="./graphs/Percent Single Family vs Population Density.png" alt="" />
+				<figcaption>
+				Left: Percentage of housing zoning which is for single-family housing. Right: Population per square mile. To show a useful gradient and due to Boston being a large outlier, graph was scaled to an upper value well below Boston's population density.
+				</figcaption>
+			</figure>
+
+			<p>
+				This figure displays the percentage of household incomes which fall into the ranges of 0-50k, 50-100k, 100-150k, and 150-200k. It can be observed that in the areas far from the city but outside of the single-family housing zones, there is a very high percentage of high-income households. This may suggest external factors driving up the cost of living in these areas which could be contributing to the low population densities. 
+			</p>
+			<figure>
+				<img src="./graphs/Household Incomes by Area.png" alt="" />
+				<figcaption>
+				Percentage of households in each municipality earning within the specified range.
+				</figcaption>
+			</figure>
+
+			<p>
+				Income data is further explored by observing the relationship between the percentage of households earning over 100K and less than 60K per year and a municipality's percentage of single-family housing zoning. From this, it can be observed that percentage of single-family zoning has a direct positive corellation to the percentage of high-earning households and a negative correllation to the percentage of low-earning households. This suggests that by creating single-family housing districts, municipalities have directly impacted the ability of those of lower earning brackets to live there. This raises questions as to what additional impacts this has on groups outside of income brackets, which will be explored next.
+			</p>
+			<figure>
+				<img src="./graphs/Percent single family housing zoning vs percent income earners .png" alt="" />
+				<figcaption>
+				Percentage of households earning >100K (left) and <60K (right) as percentage of single-family zoning increases.
+				</figcaption>
+			</figure>
+
+			<p>
+				In the New York Times article <a href="https://www.nytimes.com/interactive/2019/06/18/upshot/cities-across-america-question-single-family-zoning.html?action=click&module=RelatedLinks&pgtype=Article">Cities Start to Question an American Ideal: A House With a Yard on Every Lot</a>, a connection is drawn between the predominantly White neighborhoods being largely zoned for single family housing in Washington D.C. We can see if this holds true in the Greater Boston Area by comparing the racial composition of areas within each municipality that are zoned for single family housing and those that are not. As it is meant to compare demographics within the same municipality, those municipalities with 0 or 100% single family housing have been excluded. </br>
+				Upon comparing the percentage of the populations that are Non-Hispanic White in areas zoned for single families to those that are not, it is clear that in most cases there is a significantly larger percentage of White people living in those areas.
+			</p>
+			<figure>
+				<img src="./graphs/percent White sf vs nonsf.png" alt="Graph showing percent of White population in single-family and non-single family zones" />
+				<figcaption>
+				Percentage of population that is Non-Hispanic White in single-family and non-single-family zoning.
+				</figcaption>
+			</figure>
+
+			<p>
+				To get a better idea of how this is impacting individual groups, we can look at how each racial group is represented in single-family and non-single family zoning. By doing so, we observe that there is a massively smaller percentage of all races outside of Non-Hispanic White in those areas with single-family zoning. 
+			</p>
+			<figure>
+				<img src="./graphs/Group 1 sf vs nonsf.png" alt="Graphs showing percent of Black, Asian, Latina and Pacific Islander populations in single-family and non-single family zones" />
+				<figcaption>
+					Percentage of population that is Non-Hispanic Black (top left), Non-Hispanic Asian (top right), Hispanic / Latin American (bottom left), and Non-Hispanic Pacific Islander (bottom right) in single-family and non-single-family zoning.
+				</figcaption>
+			</figure>
+
+			<figure>
+				<img src="./graphs/Group 2 sf vs nonsf.png" alt="Graph showing percent of Native American, multi-racial, and not-otherwise-included racial population in single-family and non-single family zones" />
+				<figcaption>
+					Percentage of population that is Non-Hispanic Native American (top-left), multi-racial (top-right), or of a race other than those listed (bottom).
+				</figcaption>
+			</figure>
+		</section>
+
+		<section>
+			<h2>Summary</h2>
+
+			<p>
+				This exploratory data analysis first inspects the completeness and accuracy of the dataset which is provided, ensuring populations are sensible and that demographics can be represented as a percentage of the whole. 
+				It then takes a look at population densities in the Greater Boston Area and how these may be impacted by single-family zoning.
+				Income levels by region as they relate to single-family housing zoning and population distribution are explored to lay a foundation in determining root causes for the lack of available and/or affordable housing.
+				Finally, this analysis observes income and race distributions in areas of single-family and non-single-family housing and concludes that massive financial and racial disparities exist between these areas.
+			</p>
+		</section>
+	</main>
+</body>
+</html>
